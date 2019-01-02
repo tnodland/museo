@@ -212,4 +212,24 @@ class CuratorTest < Minitest::Test
     assert_equal [photo_1, photo_2], curator.photographs_taken_by_artist_from("France")
     assert_equal [photo_3], curator.photographs_taken_by_artist_from("Testerville")
   end
+
+  def test_it_can_load_photos_from_file
+    curator = Curator.new
+    photo_1 = Photograph.new({
+      id: "1",
+      name: "Rue Mouffetard, Paris (Boy with Bottles)",
+      artist_id: "1",
+      year: "1954"
+    })
+    photo_2 = Photograph.new({
+      id: "2",
+      name: "Moonrise, Hernandez",
+      artist_id: "2",
+      year: "1941"
+    })
+
+    curator.load_photographs('./data/photographs.csv')
+
+    assert_equal [photo_1, photo_2], curator.photographs
+  end
 end

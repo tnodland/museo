@@ -78,4 +78,8 @@ class Curator
     end
     photos
   end
+
+  def load_photographs(file)
+
+  end
 end
